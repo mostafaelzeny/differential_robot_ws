@@ -11,7 +11,37 @@ This is a ROS 2 project simulating an autonomous differential drive robot. The p
 *   **Path Planning:** Includes implementations for A*, Dijkstra, and PD motion planning algorithms.
 *   **Simulation:** Utilizes Gazebo for simulating the robot in various environments, including a small house and a small warehouse, with assets from AWS RoboMaker.
 
-The project is structured as a ROS 2 workspace with multiple packages, each responsible for a specific functionality (e.g., `robot_controller`, `robot_description`, `robot_slam`, `robot_localization`, `robot_path_planning`).
+The project is structured as a ROS 2 workspace with multiple packages, each responsible for a specific functionality.
+
+## Advanced Features
+
+This project demonstrates a complete autonomous navigation stack with several advanced features:
+
+-   **SLAM Implementation**: Real-time mapping using the `slam_toolbox` for robust map generation.
+-   **Localization**: Utilizes the AMCL (Adaptive Monte Carlo Localization) algorithm for accurate and real-time global localization.
+-   **Path Planning Algorithms**: Implements multiple path planning algorithms, providing flexibility for different scenarios:
+    -   **A* Planner**: A heuristic-based planner for optimal pathfinding.
+    -   **Dijkstra's Algorithm**: Guarantees the shortest path in an unweighted graph.
+    -   **PD Motion Planner**: A Proportional-Derivative controller for smooth and reactive motion.
+-   **High-Fidelity Simulation**: The robot is simulated in realistic Gazebo environments using detailed models from AWS RoboMaker, including a residential house and a warehouse.
+-   **Full ROS 2 Integration**: The project is fully integrated with the ROS 2 ecosystem, using launch files for orchestration, YAML files for configuration, and standard message types for communication.
+
+## Project Structure
+
+The project is organized into several ROS 2 packages within the `src` directory:
+
+```
+differential_robot/
+├── robot_controller/          # Robot control, hardware interfaces, and sensor processing
+├── robot_description/         # URDF models, simulation worlds, and launch files
+│   ├── models/               # AWS RoboMaker residential & warehouse models
+│   ├── urdf/                 # Robot URDF and Xacro files for robot structure
+│   └── worlds/               # Gazebo simulation environments
+├── robot_localization/        # AMCL configuration and launch files for localization
+├── robot_mapping/             # Costmap configuration and saved maps for navigation
+├── robot_path_planning/       # C++ implementations of path planning algorithms
+└── robot_slam/               # SLAM Toolbox integration and launch files
+```
 
 ## Building and Running
 
